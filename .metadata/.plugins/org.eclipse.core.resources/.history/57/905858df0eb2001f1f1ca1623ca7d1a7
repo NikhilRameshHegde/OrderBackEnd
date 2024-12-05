@@ -1,0 +1,5 @@
+package com.ust.orderservice.repository;
+
+public class OrderRepository {
+
+}

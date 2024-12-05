@@ -1,0 +1,17 @@
+spring.application.name=bookservice
+
+# Server Configuration
+server.port=8081
+
+# PostgreSQL Configuration
+spring.datasource.url=jdbc:postgresql://localhost:5432/book_db
+spring.datasource.username=postgres
+spring.datasource.password=postgres
+
+# Hibernate Configuration
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
+
+# Eureka Client Configuration
+eureka.client.service-url.defaultZone=http://localhost:8761/eureka/
+eureka.instance.prefer-ip-address=true

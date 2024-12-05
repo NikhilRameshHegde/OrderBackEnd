@@ -1,0 +1,23 @@
+package com.ust.orderservice.model;
+
+import jakarta.persistence.*;
+import lombok.Data;
+
+import java.time.LocalDateTime;
+import java.util.List;
+
+@Data
+@Entity
+public class Order {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @ElementCollection
+    private List<Long> bookIds;
+
+    private Double totalPrice;
+
+    private LocalDateTime createdDate;
+}

@@ -1,0 +1,5 @@
+package com.ust.bookservice.service;
+
+public class BookService {
+
+}

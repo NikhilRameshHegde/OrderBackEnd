@@ -1,0 +1,5 @@
+package com.ust.bookservice.repository;
+
+public class BookRepository {
+
+}

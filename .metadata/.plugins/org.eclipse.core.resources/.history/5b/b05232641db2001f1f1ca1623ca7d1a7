@@ -1,0 +1,12 @@
+package com.ust.orderservice.feign;
+
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
+@FeignClient(name = "bookservice")
+public interface BookServiceClient {
+
+    @GetMapping("/books/{id}")
+    Object getBookById(@PathVariable Long id);  // Replace Object with a DTO if needed.
+}

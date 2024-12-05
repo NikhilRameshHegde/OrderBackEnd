@@ -1,0 +1,52 @@
+package com.ust.orderservice.service;
+
+import com.ust.orderservice.feign.BookServiceClient;
+import com.ust.orderservice.model.OrderEntity;
+import com.ust.orderservice.repository.OrderRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.time.LocalDateTime;
+import java.util.List;
+
+@Service
+public class OrderService {
+
+    @Autowired
+    private OrderRepository orderRepository;
+
+    @Autowired
+    private BookServiceClient bookServiceClient;
+
+    public OrderEntity createOrder(List<Long> bookIds) {
+        double totalPrice = 0;
+
+        // Fetch book details from Book Service and calculate the total price
+        for (Long bookId : bookIds) {
+            Object book = bookServiceClient.getBookById(bookId);
+            totalPrice += getPriceFromBookResponse(book);  // Extract price from book details
+        }
+
+        // Create and save the order
+        OrderEntity order = new OrderEntity();
+        order.setBookIds(bookIds);
+        order.setTotalPrice(totalPrice);
+        order.setCreatedDate(LocalDateTime.now());
+
+        return orderRepository.save(order);
+    }
+
+    // Mocking price extraction from the book response
+    private Double getPriceFromBookResponse(Object bookResponse) {
+        // Logic to extract price from bookResponse (should be done using a proper DTO)
+        return 10.0;  // Mocked value for simplicity
+    }
+
+    public List<OrderEntity> getAllOrders() {
+        return orderRepository.findAll();
+    }
+
+    public OrderEntity getOrderById(Long id) {
+        return orderRepository.findById(id).orElse(null);
+    }
+}
