@@ -44,7 +44,7 @@ public class BookController {
             existingBook.setStock(updatedBook.getStock());
             return bookService.saveBook(existingBook);
         }
-        return null; // Handle this better in production (e.g., throw an exception or return a meaningful error response)
+        return null;
     }
 
     // Delete a book by ID
